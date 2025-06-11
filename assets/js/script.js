@@ -11,13 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // - {} → This holds the code that will be executed for each button.
     // - not using the way of writing it for this project.
     for (let button of buttons) {
-        // - buttons is assumed to be an array or a list containing multiple elements (probably a   collection of button elements on a webpage).
+        // - buttons is a list containing multiple elements (a collection of button elements on the webpage).
         // - The loop goes through each item inside buttons, one at a time.
         // - let button creates a temporary variable for the current item in the loop.
-        // - Inside the {}, you can write code that will be executed for each button.
-        // Think of it like checking all items in a list, one by one, and doing something with each!
         button.addEventListener("click", function () {
-            // - button.addEventListener("click", function() {...})
             // - button refers to a button element.
             // - .addEventListener("click", ...) means "listen for a click event."
             // - function() {...} is the code that runs when the button is clicked.
@@ -38,8 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 })
 
-function runGame() {
+// This code waits until the webpage has fully loaded before running. Then, it finds all the buttons on the page and sets up a system where each button listens for a user's click. When a button is clicked, the script checks its "data-type" attribute. If the button's type is "submit", a message appears saying, "You clicked Submit!". Otherwise, the script retrieves the button’s "data-type" value and displays a message like, "You clicked Multiplication", or whichever game type is stored in the attribute. This setup allows different buttons to trigger different responses based on their assigned type.
 
+/**
+ * The amin game "loop", called when the script is first loaded and after the user's answer has been processed
+ */
+function runGame() {
+    //creates two random numbers between 1 and 25
+    let num1 = Math.floor(Math.random() * 25) +1;
+    let num2 = Math.floor(Math.random() * 25) +1;
 }
 
 function checkAnswer() {
