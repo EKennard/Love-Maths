@@ -23,10 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // - .addEventListener("click", ...) means "listen for a click event."
             // - function() {...} is the code that runs when the button is clicked.
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+                checkAnswer();
                 // - this.getAttribute("data-type") → This retrieves the value of the data-type attribute from an element.
                 // - === "submit" → This checks if the value is "submit" (meaning the button is a submit button).
-                // - alert("You clicked Submit!"); → If the condition is true, this shows a pop-up message.
             } else {
                 let gameType = this.getAttribute("data-type");
                 alert(`You clicked ${gameType}`)
@@ -59,14 +58,43 @@ function runGame(gameType) {
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
 
+    runGame(calculatedAnswer[1]);
+
 }
+
+/**
+ * Checks the answer against the first element in
+ * the returned calculateCorrectAnswer array
+ */
+
 
 function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
 
+    if (isCorrect) {
+        alert("Hey! You got it right! :D");
+    } else {
+        alert(`Awwww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}`);
+    }
 }
 
+/**
+ * Gets the operand (the numbers) and the operator (plus, minus etc)
+ * directly from the dom, and returns the correct answer.
+ */
 function calculateCorrectAnswer() {
+    let operand1 =  parseInt(document.getElementById('operand1').innertext);
+    let operand2 =  parseInt(document.getElementById('operand2').innertext);
+    let operator = document.getElementById("operator").innerText;
 
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(` Inimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
+    }
 }
 
 function incrementScore() {
